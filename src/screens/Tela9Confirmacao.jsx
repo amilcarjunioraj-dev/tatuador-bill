@@ -1,4 +1,4 @@
-export default function Tela8_Confirmacao({ dados, irParaTela }) {
+export default function Tela9_Confirmacao({ dados, irParaTela }) {
   const whatsappBill = '5521964964884';
 
   const gerarMensagemWhatsApp = () => {
