@@ -14,17 +14,14 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
     setLoading(true);
 
     try {
-      // Converter imagem para base64
       const reader = new FileReader();
       reader.onload = async (e) => {
         const base64String = e.target.result.split(',')[1];
         setPreviewImagem(e.target.result);
 
         try {
-          // Enviar para IA
           const analise = await analisarImagemComGemini(base64String);
 
-          // Atualizar dados com análise da IA
           atualizarDados({
             estilo: analise.tipo,
             estilo_nome: normalizarEstilo(analise.tipo),
@@ -44,7 +41,6 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
             return;
           }
 
-          // Ir para próxima tela (Tela5Local - tela 4 no fluxo upload)
           setTimeout(() => {
             irParaTela(4);
           }, 1000);
@@ -93,7 +89,6 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
           ← VOLTAR
         </div>
 
-        {/* PREVIEW */}
         {previewImagem && (
           <div style={{
             background: '#f5f5f5',
@@ -118,7 +113,6 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
           </div>
         )}
 
-        {/* ERRO */}
         {erro && (
           <div style={{
             background: '#ffebee',
@@ -133,7 +127,6 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
           </div>
         )}
 
-        {/* UPLOAD */}
         {!loading && (
           <div style={{
             background: '#fffef0',
@@ -156,10 +149,7 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
               accept="image/*"
               onChange={handleImagemUpload}
               disabled={loading}
-              style={{
-                display: 'none',
-                cursor: 'pointer'
-              }}
+              style={{ display: 'none' }}
               id="file-input"
             />
             <label htmlFor="file-input" style={{ cursor: 'pointer' }}>
@@ -175,7 +165,6 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
           </div>
         )}
 
-        {/* LOADING */}
         {loading && (
           <div style={{
             textAlign: 'center',
@@ -191,7 +180,6 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
           </div>
         )}
 
-        {/* DICAS */}
         <div style={{
           background: '#f5f5f5',
           padding: '15px',
@@ -199,3 +187,15 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
         }}>
           <p style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '10px' }}>
             ✅ DICAS PARA MELHOR ANÁLISE:
+          </p>
+          <ul style={{ fontSize: '11px', marginLeft: '20px', color: '#666' }}>
+            <li>Envie uma imagem clara e bem iluminada</li>
+            <li>Se possível, mostre o tamanho aproximado</li>
+            <li>Foto de celular ou desenho funcionam bem</li>
+            <li>Se for referência, indique cores desejadas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
