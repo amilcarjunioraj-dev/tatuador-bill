@@ -44,9 +44,9 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
             return;
           }
 
-          // Ir para próxima tela
+          // Ir para próxima tela (Tela5Local - tela 4 no fluxo upload)
           setTimeout(() => {
-            irParaTela(3);
+            irParaTela(4);
           }, 1000);
         } catch (erroAnalise) {
           setErro('Erro ao analisar imagem. Tente novamente: ' + erroAnalise.message);
@@ -83,9 +83,9 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
 
       <div className="container">
         <div className="progresso">
-          Progresso: 1/8
+          Progresso: 1/4 (Upload)
           <div className="barra-progresso">
-            <div className="barra-progresso-fill" style={{ width: '12.5%' }}></div>
+            <div className="barra-progresso-fill" style={{ width: '25%' }}></div>
           </div>
         </div>
 
@@ -113,7 +113,7 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
               }}
             />
             <p style={{ fontSize: '12px', color: '#666' }}>
-              Analisando sua imagem...
+              Analisando sua imagem com IA...
             </p>
           </div>
         )}
@@ -199,15 +199,3 @@ export default function Tela2Upload({ irParaTela, dados, atualizarDados }) {
         }}>
           <p style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '10px' }}>
             ✅ DICAS PARA MELHOR ANÁLISE:
-          </p>
-          <ul style={{ fontSize: '11px', marginLeft: '20px', color: '#666' }}>
-            <li>Envie uma imagem clara e bem iluminada</li>
-            <li>Se possível, mostre o tamanho aproximado</li>
-            <li>Foto de celular ou desenho funcionam bem</li>
-            <li>Se for referência, indique cores desejadas</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
