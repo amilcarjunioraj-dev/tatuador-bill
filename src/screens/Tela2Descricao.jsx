@@ -39,8 +39,7 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
 
         <div style={{ marginBottom: '20px' }}>
           <p style={{ fontSize: '14px', color: '#666', marginBottom: '15px' }}>
-            Descreva sua ideia de tatuagem com o máximo de detalhes possível. 
-            Quanto mais detalhes, melhor a IA vai entender!
+            Descreva sua ideia de tatuagem com o máximo de detalhes possível.
           </p>
         </div>
 
@@ -54,7 +53,7 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
             marginBottom: '20px',
             fontSize: '12px'
           }}>
-            ⚠️ {erro}
+            {erro}
           </div>
         )}
 
@@ -64,7 +63,7 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
             setDescricao(e.target.value);
             setErro('');
           }}
-          placeholder="Ex: Quero uma borboleta colorida com flores ao redor, estilo fine line minimalista, com cores rosa e roxo..."
+          placeholder="Ex: Quero uma borboleta colorida com flores..."
           style={{
             width: '100%',
             minHeight: '200px',
@@ -85,12 +84,23 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
           marginBottom: '20px'
         }}>
           <p style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '10px' }}>
-            💡 DICAS PARA MELHOR DESCRIÇÃO:
+            💡 DICAS:
           </p>
           <ul style={{ fontSize: '11px', marginLeft: '20px', color: '#666' }}>
-            <li>Descreva o objeto/animal/símbolo principal</li>
-            <li>Mencione elementos adicionais (flores, folhas, etc)</li>
-            <li>Fale sobre o estilo desejado (minimalista, realista, geométrico)</li>
+            <li>Descreva o objeto/animal principal</li>
+            <li>Mencione elementos adicionais</li>
+            <li>Fale sobre o estilo desejado</li>
             <li>Cite cores se tiver preferência</li>
-            <li>Descreva o "vibe" ou sensação que quer passar</li>
-            <li>Quanto mai
+          </ul>
+        </div>
+
+        <button 
+          className="btn-primario"
+          onClick={handleContinuar}
+        >
+          GERAR REFERÊNCIAS
+        </button>
+      </div>
+    </div>
+  );
+}
