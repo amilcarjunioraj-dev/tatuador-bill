@@ -1,4 +1,14 @@
 export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
+  const handleUpload = () => {
+    atualizarDados({ modo: 'upload' });
+    irParaTela(3);
+  };
+
+  const handleManual = () => {
+    atualizarDados({ modo: 'manual' });
+    irParaTela(3);
+  };
+
   return (
     <div className="tela">
       <div className="header">
@@ -25,7 +35,7 @@ export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
           {/* OPÇÃO 1: UPLOAD DE IMAGEM */}
           <div
             className="card"
-            onClick={() => irParaTela(2.5)}
+            onClick={handleUpload}
             style={{ cursor: 'pointer' }}
           >
             <div className="card-icon">📸</div>
@@ -38,7 +48,7 @@ export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
           {/* OPÇÃO 2: ESCOLHER MANUALMENTE */}
           <div
             className="card"
-            onClick={() => irParaTela(2)}
+            onClick={handleManual}
             style={{ cursor: 'pointer' }}
           >
             <div className="card-icon">✨</div>
