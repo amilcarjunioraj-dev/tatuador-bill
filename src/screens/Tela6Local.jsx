@@ -10,8 +10,15 @@ export default function Tela6Local({ irParaTela, dados, atualizarDados }) {
 
   const handleLocal = (local) => {
     atualizarDados({ local: local.id, local_nome: local.nome });
-    irParaTela(7);
+    
+    if (dados.modo === 'upload') {
+      irParaTela(7); // Vai para Resultado
+    } else {
+      irParaTela(8); // Vai para Resultado (descrever)
+    }
   };
+
+  const voltarPara = dados.modo === 'upload' ? 5 : 6;
 
   return (
     <div className="tela">
@@ -21,13 +28,13 @@ export default function Tela6Local({ irParaTela, dados, atualizarDados }) {
 
       <div className="container">
         <div className="progresso">
-          Progresso: 5/7 (Local)
+          Progresso: {dados.modo === 'upload' ? '4/6' : '5/8'} (Local)
           <div className="barra-progresso">
-            <div className="barra-progresso-fill" style={{ width: '71.4%' }}></div>
+            <div className="barra-progresso-fill" style={{ width: dados.modo === 'upload' ? '66%' : '62.5%' }}></div>
           </div>
         </div>
 
-        <div className="voltar" onClick={() => irParaTela(5)}>
+        <div className="voltar" onClick={() => irParaTela(voltarPara)}>
           ← VOLTAR
         </div>
 
@@ -43,7 +50,7 @@ export default function Tela6Local({ irParaTela, dados, atualizarDados }) {
               key={local.id}
               className={`card ${dados.local === local.id ? 'selecionado' : ''}`}
               onClick={() => handleLocal(local)}
-              style={{ margin: '0', padding: '20px', textAlign: 'center' }}
+              style={{ margin: '0', padding: '20px', textAlign: 'center', cursor: 'pointer' }}
             >
               <div className="card-icon">{local.icon}</div>
               <div className="card-title">{local.nome}</div>
