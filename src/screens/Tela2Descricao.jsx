@@ -16,7 +16,7 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
     }
 
     atualizarDados({ descricao_cliente: descricao });
-    irParaTela(3);
+    irParaTela(4);
   };
 
   return (
@@ -27,9 +27,9 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
 
       <div className="container">
         <div className="progresso">
-          Progresso: 1/7 (Descrição)
+          Progresso: 1/8 (Descrição)
           <div className="barra-progresso">
-            <div className="barra-progresso-fill" style={{ width: '14.2%' }}></div>
+            <div className="barra-progresso-fill" style={{ width: '12.5%' }}></div>
           </div>
         </div>
 
@@ -40,7 +40,7 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
         <div style={{ marginBottom: '20px' }}>
           <p style={{ fontSize: '14px', color: '#666', marginBottom: '15px' }}>
             Descreva sua ideia de tatuagem com o máximo de detalhes possível. 
-            Quanto mais detalhes, melhor a IA vai entender e gerar referências!
+            Quanto mais detalhes, melhor a IA vai entender!
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
             setDescricao(e.target.value);
             setErro('');
           }}
-          placeholder="Ex: Quero uma borboleta colorida com flores ao redor, estilo fine line minimalista, com cores rosa e roxo, que pareça delicada mas com presença..."
+          placeholder="Ex: Quero uma borboleta colorida com flores ao redor, estilo fine line minimalista, com cores rosa e roxo..."
           style={{
             width: '100%',
             minHeight: '200px',
@@ -93,32 +93,4 @@ export default function Tela2Descricao({ irParaTela, dados, atualizarDados }) {
             <li>Fale sobre o estilo desejado (minimalista, realista, geométrico)</li>
             <li>Cite cores se tiver preferência</li>
             <li>Descreva o "vibe" ou sensação que quer passar</li>
-            <li>Quanto mais específico, melhor!</li>
-          </ul>
-        </div>
-
-        <div style={{
-          background: '#fffef0',
-          padding: '15px',
-          borderRadius: '8px',
-          marginBottom: '20px',
-          border: '2px solid #FFD700'
-        }}>
-          <p style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '8px' }}>
-            ✨ O QUE ACONTECE DEPOIS:
-          </p>
-          <p style={{ fontSize: '12px', color: '#666' }}>
-            Nossa IA vai gerar 4 variações diferentes de referências baseadas na sua descrição. Você escolhe qual mais se aproxima da sua ideia!
-          </p>
-        </div>
-
-        <button 
-          className="btn-primario"
-          onClick={handleContinuar}
-        >
-          GERAR REFERÊNCIAS ({descricao.length} caracteres)
-        </button>
-      </div>
-    </div>
-  );
-}
+            <li>Quanto mai
