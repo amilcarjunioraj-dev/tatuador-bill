@@ -1,32 +1,4 @@
-import { useState } from 'react';
-
 export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDados }) {
-  const [loading, setLoading] = useState(false);
-  const [erro, setErro] = useState('');
-
-  const referenciasFixas = [
-    {
-      numero: 1,
-      descricao: 'Variação A - Minimalista',
-      estilo: 'Traços finos e elegantes'
-    },
-    {
-      numero: 2,
-      descricao: 'Variação B - Cursiva Fluida',
-      estilo: 'Letras cursivas suaves'
-    },
-    {
-      numero: 3,
-      descricao: 'Variação C - Cursiva Dramática',
-      estilo: 'Letras cursivas com estilo'
-    },
-    {
-      numero: 4,
-      descricao: 'Variação D - Cursiva Clássica',
-      estilo: 'Letras cursivas tradicionais'
-    }
-  ];
-
   const handleEscolher = (numero) => {
     atualizarDados({ 
       referencia_escolhida: numero,
@@ -61,10 +33,10 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
           border: '2px solid #FFD700'
         }}>
           <p style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }}>
-            ✨ Escolha qual variação mais se aproxima da sua ideia:
+            ✨ Escolha qual variação mais se aproxima:
           </p>
           <p style={{ fontSize: '12px', color: '#666' }}>
-            Baseado em: "{dados.descricao_cliente}"
+            Sua descrição: "{dados.descricao_cliente}"
           </p>
         </div>
 
@@ -74,65 +46,97 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
           gap: '15px',
           marginBottom: '30px'
         }}>
-          {referenciasFixas.map((ref) => (
-            <div
-              key={ref.numero}
-              onClick={() => handleEscolher(ref.numero)}
-              style={{
-                cursor: 'pointer',
-                background: '#f5f5f5',
-                borderRadius: '8px',
-                padding: '15px',
-                textAlign: 'center',
-                border: '2px solid transparent',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#FFD700';
-                e.currentTarget.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'transparent';
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              <div style={{
-                fontSize: '48px',
-                marginBottom: '10px',
-                height: '100px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: '#fff',
-                borderRadius: '6px'
-              }}>
-                ✍️
-              </div>
-              <p style={{
-                fontSize: '14px',
-                fontWeight: 'bold',
-                marginBottom: '5px'
-              }}>
-                Opção {ref.numero}
-              </p>
-              <p style={{
-                fontSize: '12px',
-                color: '#666',
-                marginBottom: '10px'
-              }}>
-                {ref.estilo}
-              </p>
-              <button
-                className="btn-primario"
-                style={{
-                  fontSize: '12px',
-                  padding: '10px'
-                }}
-              >
-                Escolher
-              </button>
-            </div>
-          ))}
+          <div
+            onClick={() => handleEscolher(1)}
+            style={{
+              cursor: 'pointer',
+              background: '#f5f5f5',
+              borderRadius: '8px',
+              padding: '15px',
+              textAlign: 'center',
+              border: '2px solid transparent'
+            }}
+          >
+            <div style={{ fontSize: '48px', marginBottom: '10px' }}>✍️</div>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>
+              Opção 1
+            </p>
+            <p style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
+              Minimalista
+            </p>
+            <button className="btn-primario" style={{ fontSize: '12px', padding: '10px' }}>
+              Escolher
+            </button>
+          </div>
+
+          <div
+            onClick={() => handleEscolher(2)}
+            style={{
+              cursor: 'pointer',
+              background: '#f5f5f5',
+              borderRadius: '8px',
+              padding: '15px',
+              textAlign: 'center',
+              border: '2px solid transparent'
+            }}
+          >
+            <div style={{ fontSize: '48px', marginBottom: '10px' }}>✍️</div>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>
+              Opção 2
+            </p>
+            <p style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
+              Fluida
+            </p>
+            <button className="btn-primario" style={{ fontSize: '12px', padding: '10px' }}>
+              Escolher
+            </button>
+          </div>
+
+          <div
+            onClick={() => handleEscolher(3)}
+            style={{
+              cursor: 'pointer',
+              background: '#f5f5f5',
+              borderRadius: '8px',
+              padding: '15px',
+              textAlign: 'center',
+              border: '2px solid transparent'
+            }}
+          >
+            <div style={{ fontSize: '48px', marginBottom: '10px' }}>✍️</div>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>
+              Opção 3
+            </p>
+            <p style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
+              Dramática
+            </p>
+            <button className="btn-primario" style={{ fontSize: '12px', padding: '10px' }}>
+              Escolher
+            </button>
+          </div>
+
+          <div
+            onClick={() => handleEscolher(4)}
+            style={{
+              cursor: 'pointer',
+              background: '#f5f5f5',
+              borderRadius: '8px',
+              padding: '15px',
+              textAlign: 'center',
+              border: '2px solid transparent'
+            }}
+          >
+            <div style={{ fontSize: '48px', marginBottom: '10px' }}>✍️</div>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>
+              Opção 4
+            </p>
+            <p style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
+              Clássica
+            </p>
+            <button className="btn-primario" style={{ fontSize: '12px', padding: '10px' }}>
+              Escolher
+            </button>
+          </div>
         </div>
 
         <div style={{
