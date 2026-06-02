@@ -4,8 +4,16 @@ export default function Tela4Tamanho({ irParaTela, dados, atualizarDados }) {
   };
 
   const proximaTela = () => {
-    if (dados.tamanho) irParaTela(5);
+    if (dados.tamanho) {
+      if (dados.modo === 'upload') {
+        irParaTela(5); // Vai para Cor
+      } else {
+        irParaTela(6); // Vai para Cor (descrever)
+      }
+    }
   };
+
+  const telaAtual = dados.modo === 'upload' ? 3 : 5;
 
   return (
     <div className="tela">
@@ -15,13 +23,13 @@ export default function Tela4Tamanho({ irParaTela, dados, atualizarDados }) {
 
       <div className="container">
         <div className="progresso">
-          Progresso: 3/7 (Tamanho)
+          Progresso: {dados.modo === 'upload' ? '2/6' : '3/8'} (Tamanho)
           <div className="barra-progresso">
-            <div className="barra-progresso-fill" style={{ width: '42.8%' }}></div>
+            <div className="barra-progresso-fill" style={{ width: dados.modo === 'upload' ? '33%' : '37.5%' }}></div>
           </div>
         </div>
 
-        <div className="voltar" onClick={() => irParaTela(3)}>
+        <div className="voltar" onClick={() => irParaTela(dados.modo === 'upload' ? 3 : 4)}>
           ← VOLTAR
         </div>
 
