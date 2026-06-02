@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { buscarImagensTatuagem } from '../utils/unsplashAPI';
+import { gerarImagensDalleE } from '../utils/dalleAPI';
 
 export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDados }) {
   const [loading, setLoading] = useState(true);
@@ -13,10 +13,10 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
       setErro('');
 
       try {
-        const resultado = await buscarImagensTatuagem(dados.descricao_cliente);
+        const resultado = await gerarImagensDalleE(dados.descricao_cliente);
         setImagens(resultado);
       } catch (e) {
-        setErro('Erro ao carregar imagens: ' + e.message);
+        setErro('Erro ao gerar imagens: ' + e.message);
       }
 
       setLoading(false);
@@ -33,7 +33,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
   return (
     <div className="tela">
       <div className="header">
-        <h2>🎨 Escolha sua referência</h2>
+        <h2>🎨 IA Gerando suas referências</h2>
       </div>
 
       <div className="container">
@@ -50,9 +50,12 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
 
         {loading && (
           <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-            <p style={{ fontSize: '32px', marginBottom: '20px' }}>⏳</p>
-            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
-              Procurando referências...
+            <p style={{ fontSize: '32px', marginBottom: '20px' }}>🎨</p>
+            <p style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '10px' }}>
+              Gerando referências com IA...
+            </p>
+            <p style={{ fontSize: '12px', color: '#666' }}>
+              Isso pode levar 30-60 segundos
             </p>
           </div>
         )}
@@ -67,6 +70,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
             marginBottom: '20px',
             textAlign: 'center'
           }}>
+            <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>⚠️ Erro</p>
             {erro}
             <button 
               className="btn-primario"
@@ -88,7 +92,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
               border: '2px solid #FFD700'
             }}>
               <p style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }}>
-                ✨ Escolha qual se aproxima mais:
+                ✨ Escolha qual mais se aproxima:
               </p>
               <p style={{ fontSize: '12px', color: '#666' }}>
                 Baseado em: "{dados.descricao_cliente}"
@@ -114,9 +118,11 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = '#FFD700';
+                    e.currentTarget.style.boxShadow = '0 0 10px #FFD700';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = 'transparent';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
                   {img.url ? (
@@ -126,7 +132,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
                         alt={img.descricao}
                         style={{
                           width: '100%',
-                          height: '200px',
+                          height: '250px',
                           objectFit: 'cover',
                           marginBottom: '10px'
                         }}
@@ -138,9 +144,6 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
                         <p style={{ fontSize: '11px', color: '#666', marginBottom: '8px' }}>
                           {img.descricao}
                         </p>
-                        <p style={{ fontSize: '9px', color: '#999' }}>
-                          Foto: {img.autor}
-                        </p>
                         <button
                           className="btn-primario"
                           style={{ fontSize: '12px', padding: '8px', width: '100%' }}
@@ -151,14 +154,14 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
                     </>
                   ) : (
                     <div style={{
-                      height: '200px',
+                      height: '250px',
                       background: '#f5f5f5',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       marginBottom: '10px'
                     }}>
-                      <p style={{ color: '#999' }}>Sem imagem</p>
+                      <p style={{ color: '#999' }}>Erro ao gerar</p>
                     </div>
                   )}
                 </div>
