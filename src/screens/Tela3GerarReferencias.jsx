@@ -6,6 +6,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
   const [imagens, setImagens] = useState([]);
   const [erro, setErro] = useState('');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const carregarImagens = async () => {
       setLoading(true);
@@ -22,7 +23,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
     };
 
     carregarImagens();
-  }, [dados.descricao_cliente]);
+  }, []);
 
   const handleEscolher = (numero) => {
     atualizarDados({ referencia_escolhida: numero });
