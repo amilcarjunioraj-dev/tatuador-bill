@@ -53,21 +53,21 @@ function App() {
       
       {tela === 2 && <Tela2Home irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
       
+      {/* FLUXO UPLOAD */}
       {tela === 3 && dados.modo === 'upload' && <Tela2Upload irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 4 && dados.modo === 'upload' && <Tela5Local irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 5 && dados.modo === 'upload' && <Tela6Resultado irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 6 && dados.modo === 'upload' && <Tela7Agendamento irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 7 && dados.modo === 'upload' && <Tela8Confirmacao dados={dados} irParaTela={irParaTela} />}
       
+      {/* FLUXO MANUAL */}
       {tela === 3 && dados.modo === 'manual' && <Tela2Estilo irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
-      
-      {tela === 4 && <Tela3Tamanho irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
-      
-      {tela === 5 && <Tela4Cor irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
-      
-      {tela === 6 && <Tela5Local irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
-      
-      {tela === 7 && <Tela6Resultado irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
-      
-      {tela === 8 && <Tela7Agendamento irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
-      
-      {tela === 9 && <Tela8Confirmacao dados={dados} irParaTela={irParaTela} />}
+      {tela === 4 && dados.modo === 'manual' && <Tela3Tamanho irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 5 && dados.modo === 'manual' && <Tela4Cor irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 6 && dados.modo === 'manual' && <Tela5Local irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 7 && dados.modo === 'manual' && <Tela6Resultado irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 8 && dados.modo === 'manual' && <Tela7Agendamento irParaTela={irParaTela} dados={dados} atualizarDados={atualizarDados} />}
+      {tela === 9 && dados.modo === 'manual' && <Tela8Confirmacao dados={dados} irParaTela={irParaTela} />}
     </div>
   );
 }
