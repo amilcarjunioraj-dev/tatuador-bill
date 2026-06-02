@@ -6,14 +6,12 @@ export default function Tela4Tamanho({ irParaTela, dados, atualizarDados }) {
   const proximaTela = () => {
     if (dados.tamanho) {
       if (dados.modo === 'upload') {
-        irParaTela(5); // Vai para Cor
+        irParaTela(5);
       } else {
-        irParaTela(6); // Vai para Cor (descrever)
+        irParaTela(6);
       }
     }
   };
-
-  const telaAtual = dados.modo === 'upload' ? 3 : 5;
 
   return (
     <div className="tela">
