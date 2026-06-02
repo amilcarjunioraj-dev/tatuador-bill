@@ -7,22 +7,31 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
   const [erro, setErro] = useState('');
 
   useEffect(() => {
+    // Evita chamar a API se não houver descrição
+    if (!dados?.descricao_cliente) {
+      setErro('Nenhuma descrição fornecida. Volte e preencha os dados.');
+      setLoading(false);
+      return;
+    }
+
     const carregarImagens = async () => {
       setLoading(true);
       setErro('');
 
       try {
         const resultado = await gerarImagensDalleE(dados.descricao_cliente);
-        setImagens(resultado);
+        // Garante que resultado seja um array
+        setImagens(Array.isArray(resultado) ? resultado : []);
       } catch (e) {
-        setErro('Erro ao gerar imagens: ' + e.message);
+        console.error('Erro na geração:', e);
+        setErro('Erro ao gerar imagens: ' + (e.message || 'Erro desconhecido'));
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
     carregarImagens();
-  }, [dados.descricao_cliente]);
+  }, [dados?.descricao_cliente]); // dependência segura
 
   const handleEscolher = (numero) => {
     atualizarDados({ referencia_escolhida: numero });
@@ -94,7 +103,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
                 ✨ Escolha qual mais se aproxima:
               </p>
               <p style={{ fontSize: '12px', color: '#666' }}>
-                Baseado em: "{dados.descricao_cliente}"
+                Baseado em: "{dados?.descricao_cliente || 'descrição não informada'}"
               </p>
             </div>
 
@@ -104,9 +113,9 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
               gap: '15px',
               marginBottom: '30px'
             }}>
-              {imagens.map((img) => (
+              {imagens.map((img, idx) => (
                 <div
-                  key={img.numero}
+                  key={img.numero || idx}
                   onClick={() => handleEscolher(img.numero)}
                   style={{
                     cursor: 'pointer',
@@ -128,7 +137,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
                     <>
                       <img
                         src={img.url}
-                        alt={img.descricao}
+                        alt={img.descricao || `Opção ${img.numero}`}
                         style={{
                           width: '100%',
                           height: '250px',
