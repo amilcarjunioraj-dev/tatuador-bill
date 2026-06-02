@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { buscarImagensTatuagem } from '../utils/unsplashAPI';
 
 export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDados }) {
@@ -6,23 +6,23 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
   const [imagens, setImagens] = useState([]);
   const [erro, setErro] = useState('');
 
-  const carregarImagens = useCallback(async () => {
-    setLoading(true);
-    setErro('');
-
-    try {
-      const resultado = await buscarImagensTatuagem(dados.descricao_cliente);
-      setImagens(resultado);
-    } catch (e) {
-      setErro('Erro ao carregar imagens: ' + e.message);
-    }
-
-    setLoading(false);
-  }, [dados.descricao_cliente]);
-
   useEffect(() => {
+    const carregarImagens = async () => {
+      setLoading(true);
+      setErro('');
+
+      try {
+        const resultado = await buscarImagensTatuagem(dados.descricao_cliente);
+        setImagens(resultado);
+      } catch (e) {
+        setErro('Erro ao carregar imagens: ' + e.message);
+      }
+
+      setLoading(false);
+    };
+
     carregarImagens();
-  }, [carregarImagens]);
+  }, [dados.descricao_cliente]);
 
   const handleEscolher = (numero) => {
     atualizarDados({ referencia_escolhida: numero });
@@ -69,7 +69,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
             {erro}
             <button 
               className="btn-primario"
-              onClick={carregarImagens}
+              onClick={() => window.location.reload()}
               style={{ marginTop: '10px' }}
             >
               TENTAR NOVAMENTE
