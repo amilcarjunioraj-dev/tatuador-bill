@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { gerarImagens } from '../utils/gerarImagensUtil';
 
 export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDados }) {
@@ -6,11 +6,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
   const [erro, setErro] = useState('');
   const [imagens, setImagens] = useState([]);
 
-  useEffect(() => {
-    gerarReferencias();
-  }, []);
-
-  const gerarReferencias = async () => {
+  const gerarReferencias = useCallback(async () => {
     setLoading(true);
     setErro('');
 
@@ -21,14 +17,18 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
       setErro('Erro ao gerar referências. Tente novamente: ' + e.message);
       setLoading(false);
     }
-  };
+  }, [dados.descricao_cliente]);
+
+  useEffect(() => {
+    gerarReferencias();
+  }, [gerarReferencias]);
 
   const handleEscolher = (numero) => {
     atualizarDados({ 
       referencia_escolhida: numero,
       referencia_descricao: `Variação ${String.fromCharCode(64 + numero)}`
     });
-    irParaTela(4);
+    irParaTela(5);
   };
 
   return (
@@ -39,13 +39,13 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
 
       <div className="container">
         <div className="progresso">
-          Progresso: 2/7 (Referências)
+          Progresso: 2/8 (Referências)
           <div className="barra-progresso">
-            <div className="barra-progresso-fill" style={{ width: '28.5%' }}></div>
+            <div className="barra-progresso-fill" style={{ width: '25%' }}></div>
           </div>
         </div>
 
-        <div className="voltar" onClick={() => irParaTela(2)}>
+        <div className="voltar" onClick={() => irParaTela(3)}>
           ← VOLTAR
         </div>
 
@@ -156,8 +156,7 @@ export default function Tela3GerarReferencias({ irParaTela, dados, atualizarDado
                     alignItems: 'center',
                     justifyContent: 'center',
                     background: '#fff',
-                    borderRadius: '6px',
-                    marginBottom: '10px'
+                    borderRadius: '6px'
                   }}>
                     {img.status === 'gerada' ? '🎨' : '⚠️'}
                   </div>
