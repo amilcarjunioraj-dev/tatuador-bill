@@ -11,8 +11,15 @@ export default function Tela5Cor({ irParaTela, dados, atualizarDados }) {
       cor_nome: cor.nome,
       multiplicador_cor: cor.multiplicador
     });
-    irParaTela(6);
+    
+    if (dados.modo === 'upload') {
+      irParaTela(6); // Vai para Local
+    } else {
+      irParaTela(7); // Vai para Local (descrever)
+    }
   };
+
+  const voltarPara = dados.modo === 'upload' ? 4 : 5;
 
   return (
     <div className="tela">
@@ -22,19 +29,19 @@ export default function Tela5Cor({ irParaTela, dados, atualizarDados }) {
 
       <div className="container">
         <div className="progresso">
-          Progresso: 4/7 (Cor)
+          Progresso: {dados.modo === 'upload' ? '3/6' : '4/8'} (Cor)
           <div className="barra-progresso">
-            <div className="barra-progresso-fill" style={{ width: '57.1%' }}></div>
+            <div className="barra-progresso-fill" style={{ width: dados.modo === 'upload' ? '50%' : '50%' }}></div>
           </div>
         </div>
 
-        <div className="voltar" onClick={() => irParaTela(4)}>
+        <div className="voltar" onClick={() => irParaTela(voltarPara)}>
           ← VOLTAR
         </div>
 
         <div style={{ marginBottom: '20px' }}>
           <p style={{ fontSize: '14px', color: '#666', marginBottom: '15px', textAlign: 'center' }}>
-            {dados.tamanho} cm | {dados.referencia_descricao}
+            {dados.tamanho} cm
           </p>
         </div>
 
@@ -43,6 +50,7 @@ export default function Tela5Cor({ irParaTela, dados, atualizarDados }) {
             key={cor.id}
             className={`card ${dados.cor === cor.id ? 'selecionado' : ''}`}
             onClick={() => handleCor(cor)}
+            style={{ cursor: 'pointer' }}
           >
             <div className="card-title">{cor.nome}</div>
             <div className="card-desc">{cor.desc}</div>
