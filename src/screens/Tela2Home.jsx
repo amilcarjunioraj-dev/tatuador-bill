@@ -1,12 +1,12 @@
 export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
   const handleUpload = () => {
     atualizarDados({ modo: 'upload' });
-    irParaTela(3);
+    irParaTela(3); // Vai para Tela2Upload
   };
 
-  const handleManual = () => {
-    atualizarDados({ modo: 'manual' });
-    irParaTela(3);
+  const handleDescrever = () => {
+    atualizarDados({ modo: 'descrever' });
+    irParaTela(3); // Vai para Tela2Descricao
   };
 
   return (
@@ -17,9 +17,9 @@ export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
 
       <div className="container">
         <div className="progresso">
-          Progresso: 1/8
+          Progresso: 1/7 (Escolher Modo)
           <div className="barra-progresso">
-            <div className="barra-progresso-fill" style={{ width: '12.5%' }}></div>
+            <div className="barra-progresso-fill" style={{ width: '14.2%' }}></div>
           </div>
         </div>
 
@@ -32,7 +32,6 @@ export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
             Escolha uma opção abaixo:
           </p>
 
-          {/* OPÇÃO 1: UPLOAD DE IMAGEM */}
           <div
             className="card"
             onClick={handleUpload}
@@ -45,16 +44,15 @@ export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
             </div>
           </div>
 
-          {/* OPÇÃO 2: ESCOLHER MANUALMENTE */}
           <div
             className="card"
-            onClick={handleManual}
+            onClick={handleDescrever}
             style={{ cursor: 'pointer' }}
           >
-            <div className="card-icon">✨</div>
-            <div className="card-title">Escolher Estilo</div>
+            <div className="card-icon">✏️</div>
+            <div className="card-title">Descrever Tatuagem</div>
             <div className="card-desc">
-              Selecione passo a passo o tipo de tatuagem que deseja
+              Descreva com detalhes e a IA gera 4 referências para você escolher
             </div>
           </div>
         </div>
@@ -69,7 +67,7 @@ export default function Tela2Home({ irParaTela, dados, atualizarDados }) {
             💡 DICA:
           </p>
           <p style={{ fontSize: '12px', color: '#666' }}>
-            Se você tem uma ideia ou referência de tatuagem, envie a imagem! Nossa IA vai analisar e fazer um orçamento mais preciso com base no que você realmente quer.
+            Se você tem uma ideia ou referência de tatuagem, envie a imagem ou descreva com detalhes! Nossa IA vai criar um orçamento customizado baseado exatamente no que você quer.
           </p>
         </div>
       </div>
